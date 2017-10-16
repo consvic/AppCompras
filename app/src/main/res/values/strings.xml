@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AppCompras</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_edit">EditActivity</string>
+    <string name="title_activity_carrito">CarritoActivity</string>
+    <string name="title_activity_act">act</string>
+</resources>

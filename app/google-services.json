@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "637061258758",
+    "firebase_url": "https://appcompras-c299d.firebaseio.com",
+    "project_id": "appcompras-c299d",
+    "storage_bucket": "appcompras-c299d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637061258758:android:82eed1b52cb0d52d",
+        "android_client_info": {
+          "package_name": "com.example.cocoy.appcompras"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637061258758-83mqe0s6eng4k5kk6h2f4r07fek1e1cm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cocoy.appcompras",
+            "certificate_hash": "ccf8fc1c6e6c6befcedd9639e37322e9c93803e8"
+          }
+        },
+        {
+          "client_id": "637061258758-l2v0dh8mllvf4afvg0uv4p17aupf086b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoEPe_rZhFhiS4wHkP46LGV97iUz3uhGI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637061258758-l2v0dh8mllvf4afvg0uv4p17aupf086b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
