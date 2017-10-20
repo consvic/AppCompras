@@ -87,13 +87,16 @@ public class AddProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveData();
-                if(!isEdit) {
-                    comprasCRUD.newProduct(new Product(ProductContract.Entry.generarIdProducto(), product, pricef, mCurrentPhotoPath));
-                } else {
-                    productO = new Product(id_toEdit,product,pricef,mCurrentPhotoPath);
-                    comprasCRUD.updateProduct(productO);
+                if(product != "" && price != "" && mCurrentPhotoPath != null && Float.parseFloat(price) != 0) {
+                    pricef = Float.parseFloat(price);
+                    if (!isEdit) {
+                        comprasCRUD.newProduct(new Product(ProductContract.Entry.generarIdProducto(), product, pricef, mCurrentPhotoPath));
+                    } else {
+                        productO = new Product(id_toEdit, product, pricef, mCurrentPhotoPath);
+                        comprasCRUD.updateProduct(productO);
+                    }
+                    startActivity(new Intent(AddProductActivity.this, MainActivity.class));
                 }
-                startActivity(new Intent(AddProductActivity.this, MainActivity.class));
             }
         });
 
@@ -116,7 +119,7 @@ public class AddProductActivity extends AppCompatActivity {
     public void saveData() {
         product = etProducto.getText().toString();
         price = etPrecio.getText().toString();
-        pricef = Float.parseFloat(price);
+
     }
 
     public void validarPermisosStorage() {

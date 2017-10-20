@@ -64,7 +64,7 @@ public class RecyclerViewCustomAdapter2 extends
         float precio = detailPurchases.get(position).getSubtotal()/detailPurchases.get(position).getQuantity();
         holder.tvNombre_item.setText(detailPurchases.get(position).getProduct_name());
         holder.tvPrecioDe.setText(detailPurchases.get(position).getQuantity() + " de $" + precio);
-        holder.tvCantidad.setText(detailPurchases.get(position).getSubtotal()+"");
+        holder.tvCantidad.setText("$"+detailPurchases.get(position).getSubtotal()+"");
     }
 
 

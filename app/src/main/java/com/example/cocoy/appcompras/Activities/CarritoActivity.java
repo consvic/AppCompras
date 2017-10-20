@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cocoy.appcompras.Adapters.RecyclerViewClickListener;
@@ -39,12 +40,13 @@ public class CarritoActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-
+    private TextView tvHeader;
     private Spinner spinner;
     private EditText etCantidad;
     private FloatingActionButton fabSaveCar, fabAddProduct;
     private RecyclerViewClickListener listener;
     private RecyclerViewCustomAdapter2 adapter;
+    CollapsingToolbarLayout collapsingToolbar;
     ArrayList<Product> products = new ArrayList<>();
     ArrayList<Integer> integers = new ArrayList<>();
     ArrayList<DetailPurchase> detailPurchases = new ArrayList<>();
@@ -66,13 +68,14 @@ public class CarritoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        CollapsingToolbarLayout collapsingToolbar =
+
+        collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.toolbar_layoutCarrito);
 
         comprasCRUD = new ComprasCRUD(this);
         products = comprasCRUD.getProducts();
-        collapsingToolbar.setTitle("$0 \n 0 elementos");
 
+        tvHeader = (TextView) findViewById(R.id.tvHeaderCarrito);
 
         addItemsSpinner();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewCarrito);
@@ -99,18 +102,27 @@ public class CarritoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 addListenerOnSpinnerItemSelection();
                 saveData();
-                //integers.add(quantityInt);
-                if(quantityInt != 0) {
-                    detailPurchases.add(new DetailPurchase(id,
-                            products.get(posSelection).getId(),
-                            products.get(posSelection).getName(),
-                            quantityInt,
-                            subtotal));
-                    Log.d("quantity", quantity);
-                    Log.d("subtotal", subtotal + "");
-                    Log.d("size array", detailPurchases.size() + "");
+                if(!quantity.equals("")) {
+
+                    quantityInt = Integer.parseInt(quantity);
+                    subtotal = quantityInt * products.get(posSelection).getPrice();
+                    total = total+subtotal;
+                    elements = elements+quantityInt;
+                    //integers.add(quantityInt);
+                    if (quantityInt != 0) {
+                        detailPurchases.add(new DetailPurchase(id,
+                                products.get(posSelection).getId(),
+                                products.get(posSelection).getName(),
+                                quantityInt,
+                                subtotal));
+                        //Log.d("quantity", quantity);
+                        //Log.d("subtotal", subtotal + "");
+                        //Log.d("size array", detailPurchases.size() + "");
+                        tvHeader.setText("$"+ total +" \n "+elements +" elementos");
+
+                    }
+                    adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
             }
         });
 
@@ -118,7 +130,8 @@ public class CarritoActivity extends AppCompatActivity {
         fabSaveCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(detailPurchases != null) {
+
+                if(detailPurchases.size() > 0) {
                     int totalPurchase = 0;
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     Date now;
@@ -132,7 +145,7 @@ public class CarritoActivity extends AppCompatActivity {
                         HistoryPurchase historyPurchase = new HistoryPurchase(
                                 id_history,
                                 other,
-                                detailPurchases.size(),
+                                elements,
                                 totalPurchase
                         );
                         Log.d("date: ", other);
@@ -155,8 +168,9 @@ public class CarritoActivity extends AppCompatActivity {
 
     public void saveData() {
         quantity = etCantidad.getText().toString();
-        quantityInt = Integer.parseInt(quantity);
-        subtotal = quantityInt * products.get(posSelection).getPrice();
+
+
+
     }
 
     public void addItemsSpinner() {

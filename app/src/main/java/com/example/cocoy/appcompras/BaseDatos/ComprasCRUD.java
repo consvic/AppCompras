@@ -255,7 +255,7 @@ public class ComprasCRUD {
         sqLiteDatabase.update(
                 HistoryPurchaseContract.Entry.NOMBRE_TABLA,
                 values,
-                "id = ?",
+                HistoryPurchaseContract.Entry.COLUMNA_ID+" = ?",
                 new String[]{String.valueOf(historyPurchase.getId())}
         );
 
@@ -271,7 +271,7 @@ public class ComprasCRUD {
         //inserta la nueva, regresando el valor de la primary key
         sqLiteDatabase.delete(
                 ProductContract.Entry.NOMBRE_TABLA,
-                "id = ?",
+                ProductContract.Entry.COLUMNA_ID+" = ?",
                 new String[]{String.valueOf(product.getId())}
         );
 
@@ -286,7 +286,7 @@ public class ComprasCRUD {
         //inserta la nueva, regresando el valor de la primary key
         sqLiteDatabase.delete(
                 ProductContract.Entry.NOMBRE_TABLA,
-                "id = ?",
+                ProductContract.Entry.COLUMNA_ID+" = ?",
                 new String[]{String.valueOf(id)}
         );
 
@@ -363,7 +363,7 @@ public class ComprasCRUD {
         return detailPurchases;
     }
 
-    public ArrayList<DetailPurchase> getTheDetailsH(String id) { {
+    public ArrayList<DetailPurchase> getTheDetailsH(String id) {
             //TODO 14: Crear una lista para almacenar elementos, llamamos Db y definimos columnas
             ArrayList<DetailPurchase> detailPurchases = new ArrayList<>();
 
@@ -401,7 +401,7 @@ public class ComprasCRUD {
             //TODO 17: Cerramos conexión y regresamos elementos
             cursor.close();
             return detailPurchases;
-        }
+
     }
 
 

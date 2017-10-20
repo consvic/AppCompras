@@ -60,7 +60,7 @@ public class RecyclerViewCustomAdapter3 extends
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         holder.tvNombre_item.setText("Compra " + historyPurchases.get(position).getReal_date());
-        holder.tvPrecioDe.setText(historyPurchases.get(position).getTotal() + " elementos");
+        holder.tvPrecioDe.setText(historyPurchases.get(position).getElements() + " elementos");
         holder.tvCantidad.setText("$"+historyPurchases.get(position).getTotal());
     }
 
